@@ -1,0 +1,13 @@
+.profileInfo{
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 400px;
+    font-family: sans-serif;
+}
+.posts{
+    margin: 20px;
+    font-size: 18px;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}

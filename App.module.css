@@ -1,0 +1,36 @@
+.wrapper{
+    display: grid;
+    grid-template-areas:
+    "h h"
+    "a c";
+    grid-template-columns: 2fr 10fr;
+    grid-template-rows: 90px 1fr;
+}
+header {
+    background-color:limegreen;
+    grid-area: h;
+    padding: 15px;
+}
+aside {
+    grid-area: a;
+    background-color: lightblue;
+    height: 600px;
+}
+.categories{
+    padding-left: 30px;
+    line-height: 2rem;
+    font-size: 20px;
+    padding-top: 1rem;
+    font-family: sans-serif;
+}
+.categories a{
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+.categories a:hover{
+    text-decoration: underline;
+}
+.content {
+    grid-area: c;
+    background-color: lightgray;
+}
