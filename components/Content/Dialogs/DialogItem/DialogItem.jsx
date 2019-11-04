@@ -1,6 +1,12 @@
 import React from 'react'
-export let DialogItem = (props) =>{
+import "./DialogItem.css";
+
+export let DialogItem = ({sideWriting,message}) =>{
+    
     return(
-        <div>{props.message}</div>
+        <>
+            {sideWriting == "left" && <div className="left__content">{message}</div>}
+            {sideWriting == "right" && <div className="right__content">{message}</div>}
+        </>
     )
 }

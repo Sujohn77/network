@@ -1,7 +1,7 @@
 var path = require('path');
 
 module.exports = {
-    entry: "./index.jsx", // входная точка - исходный файл
+    entry: "./index.js", // входная точка - исходный файл
     output:{
         path: path.resolve(__dirname, './public'),     // путь к каталогу выходных файлов - папка public
         publicPath: '/public/',
@@ -9,6 +9,7 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
+        port: 3001
       },
     module:{
         rules:[   //загрузчик для jsx

@@ -1,30 +1,47 @@
 import React from 'react';
-import './Dialogs.module.css';
+import './../../../assets/css/Dialogs.module.css';
 import { DialogItem } from './DialogItem/DialogItem.jsx';
 import { Friend } from './FriendList/Friend.jsx';
+import {Field, reduxForm} from "redux-form";
+import {Input} from "./../../common/FormsControl.jsx"
 
- const Dialogs = (props) =>{
-    let newMessage = React.createRef();
-    let friendMessages = props.dialogsPage.users.map(n => <Friend name={n.name}/>);
-    let messages = props.dialogsPage.messages.map(m => <DialogItem message={m}/>);
-    let onChange = () =>{
-        props.updateMessage(newMessage.current.value);
-    }
-    let onClick =()=>{
-        props.sendMessage(newMessage.current.value);
-    }
+ const Dialogs = ({lookingActiveDialog,addMessage,setLookingActiveDialog,...props}) =>{
+
+    let users = props.dialogsPage.users.map(n =><Friend name={n.name} setLookingActiveDialog={setLookingActiveDialog} userId={n.id}/>);
+    
+
+
+    let dialogLookingFriend = props.dialogsPage.messages
+                .filter(elem => elem.idFriend == props.dialogsPage.lookingActiveDialog)
+                .map(messagesActiveFriend => messagesActiveFriend.dialog)
+
+    let dialogs = dialogLookingFriend[0].map(m => <DialogItem message={m.message} sideWriting={m.sideWriting}/>);
+                
     return(
         <div className="dialogs">
             <div className="friends">
-                { friendMessages }
+                { users }
             </div>
             <div className="messages">
-                { messages }
-                <input  type="text" ref={newMessage} value={props.newTextMessage} onChange={onChange}/>
-                <button onClick={onClick}>
-                    Send</button>
+                { dialogs }
+                <AddMessageReduxForm handleSubmit={addMessage} />
             </div>
         </div>
     )
 }
+
+const AddMessageForm = (props) =>{
+     return <form onSubmit={props.handleSubmit}>
+        <div>
+             <Field id={"custom-field"}
+                    component={Input}
+                    placeholder={"Enter your message"}
+                    name={"newTextMessage"}/>
+             <div><input type="submit" className="btn-submit" /></div>
+         </div>
+     </form>
+}
+
+let AddMessageReduxForm = reduxForm({form:"dialogAddMessageForm",fields:["newTextMessage"]})(AddMessageForm);
+
 export default Dialogs;

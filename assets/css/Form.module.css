@@ -1,0 +1,7 @@
+.error{
+    border:1px solid red;
+    width: fit-content;
+}
+.error-text{
+    color:red;
+}

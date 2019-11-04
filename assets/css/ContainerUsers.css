@@ -1,0 +1,12 @@
+.active__page{
+    font-weight: 600;
+}
+.users__content{
+    font-size: 17px;
+    font-family: sans-serif;
+    padding: 10px 50px;
+}
+.pagination span{
+    margin: 10px 10px;
+    cursor: pointer;
+}

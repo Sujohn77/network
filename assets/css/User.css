@@ -1,0 +1,13 @@
+.user{
+    display: flex;
+    padding:10px 0px;
+}
+.user > div{
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+.user button{
+    width: 100px;
+    height: 30px;
+}

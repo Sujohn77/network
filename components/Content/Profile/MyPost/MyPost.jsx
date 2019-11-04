@@ -1,5 +1,11 @@
+// @flow
 import React from 'react'
-let MyPost = (props) =>{
+
+type Props = {|
+    post:string,
+|};
+
+let MyPost = (props:Props) =>{
     return(
         <div>{props.post}</div>
     )

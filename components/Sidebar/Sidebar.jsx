@@ -3,9 +3,9 @@ import React from 'react'
     return(
         <aside>
                 <div className="categories">
-                    <a href="/">Profile</a><br/>
+                    <a href="/profile">Profile</a><br/>
                     <a href="/dialogs">Dialogs</a><br/>
-                    <a href="#">Messages</a><br/>
+                    <a href="/users">Users</a><br/>
                     <a href="#">Photos</a><br/>
                     <a href="#">Logout</a><br/>
                 </div>
