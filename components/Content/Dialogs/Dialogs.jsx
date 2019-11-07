@@ -12,7 +12,7 @@ import {Input} from "./../../common/FormsControl.jsx"
 
 
     let dialogLookingFriend = props.dialogsPage.messages
-                .filter(elem => elem.idFriend == props.dialogsPage.lookingActiveDialog)
+                .filter(elem => elem.idFriend === props.dialogsPage.lookingActiveDialog)
                 .map(messagesActiveFriend => messagesActiveFriend.dialog)
 
     let dialogs = dialogLookingFriend[0].map(m => <DialogItem message={m.message} sideWriting={m.sideWriting}/>);
@@ -24,7 +24,7 @@ import {Input} from "./../../common/FormsControl.jsx"
             </div>
             <div className="messages">
                 { dialogs }
-                <AddMessageReduxForm handleSubmit={addMessage} />
+                <AddMessageReduxForm onSubmit={addMessage} />
             </div>
         </div>
     )

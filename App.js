@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import { Route } from 'react-router-dom';
 import './assets/css/App.module.css';
 import HeaderContainer from './components/Header/HeaderContainer.jsx';
-import Sidebar from './components/SideBar/SideBar.jsx';
+import {Sidebar} from './components/Sidebar/Sidebar.jsx';
 import ContainerProfile from "./components/Content/Profile/ContainerProfile.jsx";
 import ContainerDialogs from "./components/Content/Dialogs/ContainerDialogs.jsx";
 import ContainerUsers from "./components/Content/Users/ContainerUsers.jsx";
@@ -26,7 +26,7 @@ class App extends Component {
         return (
             <div className="wrapper">
                 <HeaderContainer/>
-                <Sidebar/>
+                 <Sidebar/>
                 <div className="content">
                     <Route exact path="/" render={() => <ContainerProfile/>}/>
                     <Route path="/profile/:userId?" render={() => <ContainerProfile/>}/>

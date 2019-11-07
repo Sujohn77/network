@@ -1,3 +1,10 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+* {
+    outline: none;
+}
 .wrapper{
     display: grid;
     grid-template-areas:
@@ -17,6 +24,7 @@ header {
 aside {
     grid-area: a;
     background-color: lightblue;
+    height: calc(100vh - 90px);
 }
 .categories{
     padding-left: 30px;

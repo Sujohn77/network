@@ -14,7 +14,7 @@ export const ContainerDialogsComponent = ({sendMessage,...props}) =>{
 
    
     let addMessage = (values)=>{
-        debugger
+        alert(values.newTextMessage)
         sendMessage(values.newTextMessage);
         values.preventDefault();
      

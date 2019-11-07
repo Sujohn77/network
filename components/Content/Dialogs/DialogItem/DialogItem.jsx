@@ -1,12 +1,12 @@
 import React from 'react'
 import "./DialogItem.css";
 
-export let DialogItem = ({sideWriting,message}) =>{
-    
+export let DialogItem = ({idWriter,message}) =>{
+    debugger
     return(
         <>
-            {sideWriting == "left" && <div className="left__content">{message}</div>}
-            {sideWriting == "right" && <div className="right__content">{message}</div>}
+            {idWriter !== "0" && <div className="left__content">{message}</div>}
+            {idWriter === "0" && <div className="right__content">{message}</div>}
         </>
     )
 }

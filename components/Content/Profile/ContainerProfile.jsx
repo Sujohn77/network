@@ -8,6 +8,7 @@ import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 import Preloader from "../../common/Preloader.jsx";
 import {setStatus} from "../../../redux/profile-reducer.jsx";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 
 const ContainerProfile = (props) =>{
@@ -44,5 +45,6 @@ let mapStateToProps = (state) =>{
 
 export default compose(
     connect(mapStateToProps,{updateMessage,sendMessage,setProfileThunk,getStatus,setStatus,updateStatus}),
-    withRouter
+    withRouter,
+    withAuthRedirect
 )(ContainerProfile);

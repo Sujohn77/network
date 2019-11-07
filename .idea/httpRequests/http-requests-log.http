@@ -1,0 +1,6 @@
+GET http://localhost:8080/auth
+Accept: */*
+Cache-Control: no-cache
+
+###
+

@@ -15,33 +15,41 @@ let initialState = {
             {
                 idFriend: 1,
                 dialog:[
-                    {id: 1, message: 'Hi Ivan',sideWriting:'left'},
-                    {id: 2, message: 'How are your React?',sideWriting:'right'},
-                    {id: 3, message: 'Hm... It"s very good for now',sideWriting:'left'},
+                    {id: 1, message: 'Hi Ivan',idWriter:'1'},
+                    {id: 2, message: 'How are your React?',idWriter:'0'},
+                    {id: 3, message: 'Hm... It"s very good for now',idWriter:'1'},
                 ]
             },
             {
                 idFriend: 2,
                 dialog:[
-                    {id: 1, message: 'Hi Ivan',sideWriting:'left'},
-                    {id: 2, message: 'How are your React?',sideWriting:'right'},
-                    {id: 3, message: 'Hm... It"s very good for now',sideWriting:'left'},
+                    {id: 1, message: 'Hi Andrey',idWriter:'2'},
+                    {id: 2, message: 'How are your React?',idWriter:'0'},
+                    {id: 3, message: 'Hm... It"s very good for now',idWriter:'2'},
                 ]
             },
             {
                 idFriend: 3,
                 dialog:[
-                    {id: 1, message: 'Hi Ivan',sideWriting:'left'},
-                    {id: 2, message: 'How are your React?',sideWriting:'right'},
-                    {id: 3, message: 'Hm... It"s very good for now',sideWriting:'left'},
-                ]
+                    {id: 1, message: 'Hi Kolya',idWriter:'3'},
+                    {id: 2, message: 'How are your React?',idWriter:'0'},
+                    {id: 3, message: 'Hm... It"s very good for now',idWriter:'3'}
+                    ]
             },
             {
                 idFriend: 4,
                 dialog:[
-                    {id: 1, message: 'Hi Ivan',sideWriting:'left'},
-                    {id: 2, message: 'How are your React?',sideWriting:'right'},
-                    {id: 3, message: 'Hm... It"s very good for now',sideWriting:'left'},
+                    {id: 1, message: 'Hi Nikifor',idWriter:'4'},
+                    {id: 2, message: 'How are your React?',idWriter:'0'},
+                    {id: 3, message: 'Hm... It"s very good for now',idWriter:'4'},
+                ]
+            },
+            {
+                idFriend: 5,
+                dialog:[
+                    {id: 1, message: 'Hi Misha',idWriter:'5'},
+                    {id: 2, message: 'How are your React?',idWriter:'0'},
+                    {id: 3, message: 'Hm... It"s very good for now',idWriter:'5'},
                 ]
             }
 
@@ -49,7 +57,7 @@ let initialState = {
         ],
     newTextMessage:"",
     lookingActiveDialog:1
-}
+};
 
 export const dialogReducer = (state = initialState,action) => {
     switch(action.type){
@@ -57,7 +65,7 @@ export const dialogReducer = (state = initialState,action) => {
             return{
                 ...state,
                 newTextMessage:action.newMessage
-            }
+            };
         case SEND_MESSAGE:
             if(action.newTextMessage !=='') {
 
@@ -75,8 +83,8 @@ export const dialogReducer = (state = initialState,action) => {
         case SET_CURRENT_USER:
             return {
                 ...state,
-                currentUser: action.userId
-            }
+                lookingActiveDialog: action.userId
+            };
                 
         default: return state;
     }

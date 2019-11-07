@@ -1,5 +1,5 @@
 import React from 'react'
- const Sidebar =()=>{
+export const Sidebar =()=>{
     return(
         <aside>
                 <div className="categories">
@@ -12,4 +12,3 @@ import React from 'react'
             </aside>
     )
 }
-export default Sidebar;

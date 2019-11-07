@@ -11,35 +11,36 @@ let initialState = {
         isAuth: false
     },
     captcha:null
-}
+};
 
 export const authReducer = (state = initialState,action ) => {
     switch(action.type){
         case SET_LOGIN_USER:
+            debugger
                 return {
                     ...state,
                     payload: action.payload,
-                }
+                };
         case SET_CAPTCHA:
             return{
                 ...state,
                 captcha:action.captcha
-            }
+            };
         default: return state;
     }
     
-}
+};
 
 export const authThunkAPI = () => (dispatch) => {
-
+    debugger
    return AuthAPI.isAuth().then(data =>{
         if(data.resultCode == 0){
-
+            debugger
             let {email,id,login} = data.data;
             dispatch(setLoginUser(id, email, login, true));
         }
     })
-}
+};
 export const loginThunkAPI = (email,password,rememberMe = false,captcha=null) =>  (dispatch) => {
     AuthAPI.login(email,password,rememberMe,captcha).then(data => {
         if(data.resultCode == 0){
@@ -53,17 +54,13 @@ export const loginThunkAPI = (email,password,rememberMe = false,captcha=null) =>
             stopSubmit("login",{_error:message});
         }
     });
-
-    
-        
-        
-}
+};
 export const logoutThunkAPI = () => (dispatch) => {
     AuthAPI.logout().then(data =>{
         if(data.resultCode == 0){
             dispatch(setLoginUser(null, null, null, false));
         }
     })
-}
+};
 export let setLoginUser = (email,id,login,isAuth) =>({type: SET_LOGIN_USER,payload:{email,id,login,isAuth}});
 let setCaptcha = (captcha) =>({type: SET_CAPTCHA,captcha});

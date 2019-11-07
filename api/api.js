@@ -2,7 +2,7 @@ import * as axios from "axios";
 
 const instance = axios.create({
     withCredentials: true,
-    baseURL:"https://social-network.samuraijs.com/api/1.0/",
+    baseURL:"http://localhost:3000/",
     headers : {
         "API-KEY":"2b1cf7ba-6d1d-47ad-a8c9-73b6630a09e4"
     }
@@ -22,7 +22,7 @@ export const UsersAPI = {
         console.warn("Use ProfileAPI to get profile");
         return ProfileAPI.setProfile(userId);
     }
-}
+};
 export const ProfileAPI ={
     setProfile(userId){
         return instance.get(`profile/${userId}`).then(response => response.data);
@@ -37,7 +37,8 @@ export const ProfileAPI ={
 
 export const AuthAPI = {
     isAuth(){
-        return instance.get(`auth/me`).then(response => response.data);
+        debugger
+        return instance.get(`auth`).then(response => {debugger;response.data});
     },
     login(email,password,rememberMe,captcha){
         return instance.put(`auth/login`,{email,password,rememberMe,captcha});

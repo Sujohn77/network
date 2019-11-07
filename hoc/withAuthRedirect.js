@@ -11,6 +11,10 @@ let mapStateToProps = (state) => {
 };
 export const withAuthRedirect = (Component) =>{
     class RedirectComponent extends React.Component{
+        componentDidMount(): void {
+            debugger
+            this.props.authThunkAPI();
+        }
 
         render(){
 
