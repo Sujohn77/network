@@ -1,15 +1,21 @@
 const SET_LOGIN_USER = "SET_LOGIN_USER";
 const SET_CAPTCHA = "SET_CAPTCHA";
+const SET_LOGOUT = "SET_LOGOUT";
 
 import {AuthAPI, securityApi} from "../api/api";
 
 let initialState = {
-    payload: {
+    authInfo: {
         email: null,
         id: null,
         login: null,
-        isAuth: false
+
     },
+    login:{
+        login:null,
+        password:null
+    },
+    isAuth: false,
     captcha:null
 };
 
@@ -18,8 +24,15 @@ export const authReducer = (state = initialState,action ) => {
         case SET_LOGIN_USER:
                 return {
                     ...state,
-                    payload: action.payload,
+                    authInfo: action.payload,
+                    isAuth: true
                 };
+        case SET_LOGOUT:
+            return {
+                ...state,
+                authInfo: action.payload,
+                isAuth: false
+            };
         case SET_CAPTCHA:
             return{
                 ...state,
@@ -31,14 +44,15 @@ export const authReducer = (state = initialState,action ) => {
 };
 
 export const authThunkAPI = () => async (dispatch) => {
+
     let data = await AuthAPI.isAuth();
 
 
-    if(data.data.resultCode == 0){
+    if(data.resultCode == 0){
 
-        let {email,id,login} = data.data.data;
+        let {email,id,login} = data.data;
 
-        dispatch(setLoginUser(id, email, login, true));
+        dispatch(setLoginUser(id, email, login));
     }
 
 };
@@ -56,12 +70,14 @@ export const loginThunkAPI = (email,password,rememberMe = false,captcha=null) =>
         }
     });
 };
-export const logoutThunkAPI = () => (dispatch) => {
-    AuthAPI.logout().then(data =>{
-        if(data.resultCode == 0){
-            dispatch(setLoginUser(null, null, null, false));
-        }
-    })
+export const logoutThunkAPI = () => async (dispatch) => {
+    let data = await AuthAPI.logout();
+
+    if(data.resultCode == 0){
+        dispatch(setLogout(null, null, null));
+    }
 };
-export let setLoginUser = (email,id,login,isAuth) =>({type: SET_LOGIN_USER,payload:{email,id,login,isAuth}});
+
+export let setLoginUser = (email,id,login) =>({type: SET_LOGIN_USER,payload:{email,id,login}});
+export let setLogout = (email,id,login) =>({type: SET_LOGOUT,payload:{email,id,login}});
 let setCaptcha = (captcha) =>({type: SET_CAPTCHA,captcha});

@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import {setLoginUser,authThunkAPI} from "../../redux/auth-reducer.jsx"
+import {setLoginUser} from "../../redux/auth-reducer.jsx"
 import Header from './Header.jsx';
-import {logoutThunkAPI} from "../../redux/auth-reducer.jsx";
+import {logoutThunkAPI,authThunkAPI} from "../../redux/auth-reducer.jsx";
 
 export class HeaderContainer extends React.Component {
     render(){
@@ -13,10 +13,11 @@ export class HeaderContainer extends React.Component {
 }
 
 let mapStateToProps = (state) =>{
-    return{
-        isAuth:state.auth.payload.isAuth,
-        login:state.auth.payload.login
-    }
-}
 
-export default connect(mapStateToProps,{setLoginUser,authThunkAPI,logoutThunkAPI})(HeaderContainer);
+    return{
+        isAuth:state.auth.isAuth,
+        login:state.auth.authInfo.login
+    }
+};
+
+export default connect(mapStateToProps,{authThunkAPI,logoutThunkAPI})(HeaderContainer);

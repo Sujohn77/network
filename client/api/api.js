@@ -29,22 +29,23 @@ export const ProfileAPI ={
     updateStatus(status){
         return instance.put(`profile/status`, {status: status}).then(response => response.data);
     }
-}
+};
 
 export const AuthAPI = {
     isAuth(){
+        console.log("auth")
         return instance.get(`auth`).then(response => response.data);
     },
     login(email,password,rememberMe,captcha){
         return instance.put(`auth/login`,{email,password,rememberMe,captcha});
     },
     logout(){
-        return instance.delete(`auth/login`);
+        return instance.delete(`auth/login`).then(response => response.data);
     }
-}
+};
 
 export const securityApi = {
     getCaptcha(){
         return instance.get("/security/get-captcha-url");
     }
-}
+};

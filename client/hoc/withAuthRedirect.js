@@ -1,4 +1,4 @@
-import React from "react";
+import React,{PureComponent} from "react";
 import { connect } from "react-redux";
 import {Redirect} from "react-router-dom"
 import {authThunkAPI} from "../redux/auth-reducer.jsx";
@@ -6,15 +6,15 @@ import {authThunkAPI} from "../redux/auth-reducer.jsx";
 
 let mapStateToProps = (state) => {
     return {
-        payload: state.auth.payload
+        isAuth: state.auth.isAuth
     }
 };
 export const withAuthRedirect = (Component) =>{
-    class RedirectComponent extends React.Component{
+    class RedirectComponent extends PureComponent{
         render(){
             debugger
             // NOT LOGGED TO LOGIN ELSE TO COMPONENT
-             if(!this.props.payload.isAuth) return <Redirect to="/login"/>
+             if(!this.props.isAuth) return <Redirect to="/login"/>
             return <Component {...this.props}/>
         }
     }
