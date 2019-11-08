@@ -1,15 +1,15 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
-    entry: path.resolve(__dirname) + "/index.js", // входная точка - исходный файл
+    entry: path.resolve(__dirname) + "/client/index.js", // входная точка - исходный файл
     output:{
-        path: path.resolve(__dirname, './public'),     // путь к каталогу выходных файлов - папка public
+        path: path.resolve(__dirname, '/client/public'),     // путь к каталогу выходных файлов - папка public
         publicPath: '/public/',
         filename: "bundle.js"       // название создаваемого файла
     },
     devServer: {
         historyApiFallback: true,
-        port: 3001
+        port: 3000
       },
     module:{
         rules:[   //загрузчик для jsx
